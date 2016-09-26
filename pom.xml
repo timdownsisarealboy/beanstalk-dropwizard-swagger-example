@@ -7,9 +7,9 @@
     </prerequisites>
 
     <artifactId>dropwizard-example</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <groupId>io.dropwizard</groupId>
-    <name>Dropwizard Example Application</name>
+    <name>Beanstalk Dropwizard Swagger Example Application</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,9 +28,8 @@
 
     <repositories>
         <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>central</id>
+            <url>http://central.maven.org/maven2</url>
         </repository>
     </repositories>
 

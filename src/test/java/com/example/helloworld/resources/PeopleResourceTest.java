@@ -32,10 +32,10 @@ import static org.mockito.Mockito.when;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class PeopleResourceTest {
-    private static final PersonDAO PERSON_DAO = mock(PersonDAO.class);
+    private static final PersonDAO dao = mock(PersonDAO.class);
     @ClassRule
-    public static final ResourceTestRule RESOURCES = ResourceTestRule.builder()
-            .addResource(new PeopleResource(PERSON_DAO))
+    public static final ResourceTestRule resources = ResourceTestRule.builder()
+            .addResource(new PeopleResource(dao))
             .build();
     @Captor
     private ArgumentCaptor<Person> personCaptor;
@@ -50,31 +50,30 @@ public class PeopleResourceTest {
 
     @After
     public void tearDown() {
-        reset(PERSON_DAO);
+        reset(dao);
     }
 
     @Test
     public void createPerson() throws JsonProcessingException {
-        when(PERSON_DAO.create(any(Person.class))).thenReturn(person);
-        final Response response = RESOURCES.client().target("/people")
+        when(dao.create(any(Person.class))).thenReturn(person);
+        final Response response = resources.client().target("/people")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .post(Entity.entity(person, MediaType.APPLICATION_JSON_TYPE));
 
         assertThat(response.getStatusInfo()).isEqualTo(Response.Status.OK);
-        verify(PERSON_DAO).create(personCaptor.capture());
+        verify(dao).create(personCaptor.capture());
         assertThat(personCaptor.getValue()).isEqualTo(person);
     }
 
     @Test
     public void listPeople() throws Exception {
         final ImmutableList<Person> people = ImmutableList.of(person);
-        when(PERSON_DAO.findAll()).thenReturn(people);
+        when(dao.findAll()).thenReturn(people);
 
-        final List<Person> response = RESOURCES.client().target("/people")
-            .request().get(new GenericType<List<Person>>() {
-            });
+        final List<Person> response = resources.client().target("/people")
+                .request().get(new GenericType<List<Person>>() {});
 
-        verify(PERSON_DAO).findAll();
+        verify(dao).findAll();
         assertThat(response).containsAll(people);
     }
 }
