@@ -3,6 +3,7 @@ package com.example.helloworld.resources;
 import com.example.helloworld.core.Person;
 import com.example.helloworld.db.PersonDAO;
 import io.dropwizard.hibernate.UnitOfWork;
+import io.swagger.annotations.Api;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Path("/people")
 @Produces(MediaType.APPLICATION_JSON)
+@Api(value="people")
 public class PeopleResource {
 
     private final PersonDAO peopleDAO;
