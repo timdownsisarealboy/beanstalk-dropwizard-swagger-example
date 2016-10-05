@@ -97,3 +97,10 @@ viewRendererConfiguration:
 #      port: 2003
 #      prefix: example
 #      frequency: 10s
+
+swagger:
+  resourcePackage: com.example.helloworld
+  title: Swagger Sample App
+  description: This is a sample server Petstore server.
+  termsOfService: http://swagger.io/terms/
+  version: 1.0.1
