@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "dgageot/java8",
+    "Name": "maven:3.3.9-jdk-8",
     "Update": "true"
   },
   "Ports": [
